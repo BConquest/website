@@ -1,4 +1,4 @@
-base_url = "https://bryantconquest.com"
+base_url = "https://www.bryantconquest.com"
 compile_sass = true
 highlight_code = true
 build_search_index = true
