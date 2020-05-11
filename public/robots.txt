@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://www.bryantconquest.com/sitemap.xml
+Sitemap: https://bryantconquest.com/sitemap.xml
