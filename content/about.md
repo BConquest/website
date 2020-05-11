@@ -13,7 +13,7 @@ I currently use [Void Linux](https://voidlinux.org/) as my distro of choice, and
 
 Email  - bmconquest@crimson.ua.edu \
 HN     - [626c75](https://news.ycombinator.com/user?id=626c75) \
-Github - [BConquest](https://github.com/BConquest) \
+Github - [BConquest](https://github.com/BConquest) 
 
 ## \# Website
 
