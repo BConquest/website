@@ -10,7 +10,7 @@ title = "626c75"
 description = "Short Tech Write Ups"
 
 [extra]
-hyde_theme = "theme-base-0d"
+hyde_theme = "theme-base-10"
 hyde_sticky = true
 hyde_links = [
 {url = "https://github.com/BConquest", name = "Github"},
