@@ -1,6 +1,7 @@
 {% extends "index.html" %}
 
 {% block content %}
+<title>{% block title %}{{ page.title }}{% endblock title %}</title>
 <h1 class="title">
   {{ page.title }}
 </h1>
