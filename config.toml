@@ -19,4 +19,6 @@ hera_sticky = true
 hera_links = [
 {url = "https://github.com/BConquest", name = "Github"},
 {url = "/about", name = "About"},
+{url = "/blog", name = "Blog"},
+{url = "/projects", name = "Projects"},
 ]
