@@ -1,5 +1,5 @@
 +++
-title = "Project: Interprocess Communication"
+title = "Interprocess Communication"
 date = 2020-05-11
 +++
 

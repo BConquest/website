@@ -19,16 +19,21 @@
         </url>
     
         <url>
-            <loc>https://bryantconquest.com/blog/interprocess-communication/</loc>
+            <loc>https://bryantconquest.com/blog/my-setup/</loc>
             
-                <lastmod>2020-05-11</lastmod>
+                <lastmod>2020-05-21</lastmod>
             
         </url>
     
         <url>
-            <loc>https://bryantconquest.com/blog/my-setup/</loc>
+            <loc>https://bryantconquest.com/projects/</loc>
             
-                <lastmod>2020-05-21</lastmod>
+        </url>
+    
+        <url>
+            <loc>https://bryantconquest.com/projects/interprocess-communication/</loc>
+            
+                <lastmod>2020-05-11</lastmod>
             
         </url>
     
