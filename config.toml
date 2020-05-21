@@ -3,7 +3,7 @@ compile_sass = true
 build_search_index = true
 
 # Theme Options
-theme = "hyde"
+theme = "hera"
 
 title = "626c75"
 title1 = "626c75 Homepage"
@@ -14,9 +14,9 @@ highlight_theme = "one-dark"
 
 
 [extra]
-hyde_theme = "theme-base-10"
-hyde_sticky = true
-hyde_links = [
+hera_theme = "theme-base-10"
+hera_sticky = true
+hera_links = [
 {url = "https://github.com/BConquest", name = "Github"},
 {url = "/about", name = "About"},
 ]
