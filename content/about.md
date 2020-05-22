@@ -9,13 +9,13 @@ I am Bryant Conquest. I study Computer Science at the Univeristy of Alabama. I a
 
 I currently use [Void Linux](https://voidlinux.org/) as my distro of choice, and try to use free software where possible.
 
-## \# Contact
+## Contact
 
 Email  - bmconquest@crimson.ua.edu \
 HN     - [626c75](https://news.ycombinator.com/user?id=626c75) \
 Github - [BConquest](https://github.com/BConquest) 
 
-## \# Website
+## Website
 
 This website is hosted on a raspberry pi 3b+, and is built using [zola](https://www.getzola.org/). The source code is hosted on [github](https://github.com/BConquest/website).
 
