@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+		<!-- Enable responsiveness on mobile devices-->
+		<!-- viewport-fit=cover is to support iPhone X rounded corners and notch in landscape-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover">
+
+		<title>Creating a Simple Network Monitor</title>
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="https:&#x2F;&#x2F;bryantconquest.com&#x2F;print.css" media="print">
+		<link rel="stylesheet" href="https:&#x2F;&#x2F;bryantconquest.com&#x2F;poole.css">
+		<link rel="stylesheet" href="https:&#x2F;&#x2F;bryantconquest.com&#x2F;hyde.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+		<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet"> 
+
+		
+
+		
+		
+	</head>
+
+	<body class="">
+		
+		<div class="sidebar">
+			<div class="container sidebar-sticky">
+				<div class="sidebar-about">
+					
+					<a href="https:&#x2F;&#x2F;bryantconquest.com"><h1>626c75</h1></a>
+					
+					<p class="lead">Short Tech Write Ups</p>
+					
+					<img src="/pfp.webp" alt="PFP">
+					
+				</div>
+
+				<ul class="sidebar-nav">
+					
+					
+					<li class="sidebar-nav-item"><a href="https:&#x2F;&#x2F;github.com&#x2F;BConquest">Github</a></li>
+					
+					<li class="sidebar-nav-item"><a href="&#x2F;about">About</a></li>
+					
+					<li class="sidebar-nav-item"><a href="&#x2F;blog">Blog</a></li>
+					
+					<li class="sidebar-nav-item"><a href="&#x2F;projects">Projects</a></li>
+					
+					
+				</ul>
+			</div>
+		</div>
+		
+
+		<div class="content container">
+			
+<title>Creating a Simple Network Monitor</title>
+<h1 class="title">
+  Creating a Simple Network Monitor
+</h1>
+<p class="subtitle"><strong>2020-05-31</strong></p>
+<p><h1 id="introduction">Introduction</h1>
+<p>While trying to get more information about what is happing on without having a terminal open. I decided to use a bar to display this information and instead of using other people's scripts, I have recreated the wheel. This was a fun challenge reading from files and finding the information that I would need.</p>
+<h1 id="how-it-works">How it works</h1>
+<p>This is a relatively simple program but it reads from three files. The first two are the rx_bytes and tx_bytes for the interface that is passed in. The other file is reads from is a log file that contains the previous values of the transmitted and recieved bytes. It will then subtract the current bytes from the previous bytes and output that in a truncated way, thanks to this nifty bit of code.</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#cd74e8;">#define </span><span style="color:#5cb3fa;">DIM</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">x</span><span style="color:#abb2bf;">) (</span><span style="color:#adb7c9;">sizeof</span><span style="color:#abb2bf;">(x)</span><span style="color:#adb7c9;">/sizeof</span><span style="color:#abb2bf;">(</span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;">(x)))
+</span><span style="color:#cd74e8;">static const char </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;">sizes[] </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">{ </span><span style="color:#9acc76;">&quot;EiB&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;PiB&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;TiB&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;GiB&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;MiB&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;KiB&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;B&quot;</span><span style="color:#abb2bf;">};
+</span><span style="color:#cd74e8;">static const</span><span style="color:#abb2bf;"> u_int64_t exbibytes </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">1024</span><span style="color:#cd74e8;">ULL </span><span style="color:#adb7c9;">* </span><span style="color:#db9d63;">1024</span><span style="color:#cd74e8;">ULL </span><span style="color:#adb7c9;">* </span><span style="color:#db9d63;">1024</span><span style="color:#cd74e8;">ULL </span><span style="color:#adb7c9;">* </span><span style="color:#db9d63;">1024</span><span style="color:#cd74e8;">ULL </span><span style="color:#adb7c9;">* </span><span style="color:#db9d63;">1024</span><span style="color:#cd74e8;">ULL </span><span style="color:#adb7c9;">* </span><span style="color:#db9d63;">1024</span><span style="color:#cd74e8;">ULL</span><span style="color:#abb2bf;">;
+
+</span><span style="color:#cd74e8;">char </span><span style="color:#adb7c9;">*</span><span style="color:#5cb3fa;">calculateSize</span><span style="color:#abb2bf;">(u_int64_t </span><span style="color:#eb6772;">size</span><span style="color:#abb2bf;">) {
+	</span><span style="color:#cd74e8;">char </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;">result </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">(</span><span style="color:#cd74e8;">char </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;">) </span><span style="color:#5ebfcc;">malloc</span><span style="color:#abb2bf;">(</span><span style="color:#adb7c9;">sizeof</span><span style="color:#abb2bf;">(</span><span style="color:#cd74e8;">char</span><span style="color:#abb2bf;">)</span><span style="color:#adb7c9;">*</span><span style="color:#db9d63;">20</span><span style="color:#abb2bf;">);
+	u_int64_t multiplier </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> exbibytes;
+	</span><span style="color:#cd74e8;">int</span><span style="color:#abb2bf;"> i;
+
+	</span><span style="color:#cd74e8;">for </span><span style="color:#abb2bf;">(i </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">; i </span><span style="color:#adb7c9;">&lt; </span><span style="color:#eb6772;">DIM</span><span style="color:#abb2bf;">(sizes); i</span><span style="color:#adb7c9;">++</span><span style="color:#abb2bf;">, multiplier </span><span style="color:#adb7c9;">/= </span><span style="color:#db9d63;">1024</span><span style="color:#abb2bf;">) {
+		</span><span style="color:#cd74e8;">if </span><span style="color:#abb2bf;">(size </span><span style="color:#adb7c9;">&lt;</span><span style="color:#abb2bf;"> multiplier) </span><span style="color:#cd74e8;">continue</span><span style="color:#abb2bf;">;
+		</span><span style="color:#5ebfcc;">sprintf</span><span style="color:#abb2bf;">(result, </span><span style="color:#9acc76;">&quot;</span><span style="color:#db9d63;">%.1f %s</span><span style="color:#9acc76;">&quot;</span><span style="color:#abb2bf;">, (</span><span style="color:#cd74e8;">float</span><span style="color:#abb2bf;">) size </span><span style="color:#adb7c9;">/</span><span style="color:#abb2bf;"> multiplier, sizes[i]);
+		</span><span style="color:#cd74e8;">return</span><span style="color:#abb2bf;"> result;
+	}
+
+	</span><span style="color:#5ebfcc;">strcpy</span><span style="color:#abb2bf;">(result, </span><span style="color:#9acc76;">&quot;0&quot;</span><span style="color:#abb2bf;">);
+	</span><span style="color:#cd74e8;">return</span><span style="color:#abb2bf;"> result;
+}
+</span></code></pre>
+<p>What this code does is takes in the number of bytes that you have and converts it into a formatted shorter version of it.</p>
+</p>
+
+		</div>
+
+	</body>
+
+</html>

@@ -1,40 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    
-        <url>
-            <loc>https://bryantconquest.com/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://bryantconquest.com/about/</loc>
-            
-                <lastmod>2020-05-10</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://bryantconquest.com/blog/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://bryantconquest.com/blog/my-setup/</loc>
-            
-                <lastmod>2020-05-21</lastmod>
-            
-        </url>
-    
-        <url>
-            <loc>https://bryantconquest.com/projects/</loc>
-            
-        </url>
-    
-        <url>
-            <loc>https://bryantconquest.com/projects/interprocess-communication/</loc>
-            
-                <lastmod>2020-05-11</lastmod>
-            
-        </url>
-    
+    <url>
+        <loc>https://bryantconquest.com/</loc>
+    </url>
+    <url>
+        <loc>https://bryantconquest.com/about/</loc>
+        <lastmod>2020-05-10</lastmod>
+    </url>
+    <url>
+        <loc>https://bryantconquest.com/blog/</loc>
+    </url>
+    <url>
+        <loc>https://bryantconquest.com/blog/creating-network-monitoring-program/</loc>
+        <lastmod>2020-05-31</lastmod>
+    </url>
+    <url>
+        <loc>https://bryantconquest.com/blog/my-setup/</loc>
+        <lastmod>2020-05-21</lastmod>
+    </url>
+    <url>
+        <loc>https://bryantconquest.com/projects/</loc>
+    </url>
+    <url>
+        <loc>https://bryantconquest.com/projects/interprocess-communication/</loc>
+        <lastmod>2020-05-11</lastmod>
+    </url>
 </urlset>

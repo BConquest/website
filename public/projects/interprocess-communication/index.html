@@ -65,12 +65,12 @@
 <p>This is a sample program that demonstrates how process can comunicate on linux based systems. The goal is to read in 2 matrixes stored in plain text and multiply them returning the results. This first part of this is done in package.</p>
 <p>Package will read in the matrixes and store them in a data structure that looks like.</p>
 <pre style="background-color:#2b303b;">
-<span style="color:#cd74e8;">typedef struct</span><span style="color:#abb2bf;"> matrixStruct {
+<code><span style="color:#cd74e8;">typedef struct</span><span style="color:#abb2bf;"> matrixStruct {
 	</span><span style="color:#cd74e8;">int</span><span style="color:#abb2bf;"> rows;
 	</span><span style="color:#cd74e8;">int</span><span style="color:#abb2bf;"> cols;
 	</span><span style="color:#cd74e8;">int </span><span style="color:#adb7c9;">**</span><span style="color:#abb2bf;">pmatrix;
 } matrixStruct;
-</span></pre>
+</span></code></pre>
 <p>It will then start creating tasks and adding them to the message queue with each task being a separate pthread to wait for the response. Once the threads get a return message they write the answer to an output matrix after also aquiring the appropriate mutex's.</p>
 <p>Compute is the other process that first receives from the message queue calculates the answer by finding the dot product and returns that onto the queue. It uses a thread pool to do this and can be of any size.</p>
 <p>Both of the programs will also capture the signal SIGINT and print out a status of the current run that follows the form of <code> Jobs sent foo Jobs Received bar</code>. They also print messages when they have sent or recieved a job that contains the job id, type, and size of the job.</p>
