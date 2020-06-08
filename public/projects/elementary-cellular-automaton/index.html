@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+		<!-- Enable responsiveness on mobile devices-->
+		<!-- viewport-fit=cover is to support iPhone X rounded corners and notch in landscape-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover">
+
+		<title>Elementary Cellular Automaton</title>
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="https:&#x2F;&#x2F;bryantconquest.com&#x2F;print.css" media="print">
+		<link rel="stylesheet" href="https:&#x2F;&#x2F;bryantconquest.com&#x2F;poole.css">
+		<link rel="stylesheet" href="https:&#x2F;&#x2F;bryantconquest.com&#x2F;hyde.css">
+
+		
+
+		
+		
+	</head>
+
+	<body class="">
+		
+		<div class="sidebar">
+			<div class="container sidebar-sticky">
+				<div class="sidebar-about">
+					
+					<a href="https:&#x2F;&#x2F;bryantconquest.com"><h1>626c75</h1></a>
+					
+					<p class="lead">Short Tech Write Ups</p>
+					
+					<img src="/pfp.webp" alt="PFP">
+					
+				</div>
+
+				<ul class="sidebar-nav">
+					
+					
+					<li class="sidebar-nav-item"><a href="https:&#x2F;&#x2F;github.com&#x2F;BConquest">Github</a></li>
+					
+					<li class="sidebar-nav-item"><a href="&#x2F;about">About</a></li>
+					
+					<li class="sidebar-nav-item"><a href="&#x2F;blog">Blog</a></li>
+					
+					<li class="sidebar-nav-item"><a href="&#x2F;projects">Projects</a></li>
+					
+					
+				</ul>
+			</div>
+		</div>
+		
+
+		<div class="content container">
+			
+<title>Elementary Cellular Automaton</title>
+<h1 class="title">
+  Elementary Cellular Automaton
+</h1>
+<p class="subtitle"><strong>2020-06-06</strong></p>
+<p><h2 id="what-are-elementary-cellular-automaton">What are Elementary Cellular Automaton</h2>
+<p>They are a group of one-dimensional automaton that have binary states. It is considered to be  one-dimensional since the cell's state depends on what it was in the previous state
+plus its two neighbors.  This leads to a nice property of having 255 states that can be represent every combination of states. So for example the number 78 when converted to binary
+is 0b01001110 and the rule set for 78 looks like:</p>
+<table><thead><tr><th align="center">111</th><th align="center">110</th><th align="center">101</th><th align="center">100</th><th align="center">011</th><th align="center">010</th><th align="center">001</th><th align="center">000</th></tr></thead><tbody>
+<tr><td align="center">0</td><td align="center">1</td><td align="center">0</td><td align="center">0</td><td align="center">1</td><td align="center">1</td><td align="center">1</td><td align="center">0</td></tr>
+</tbody></table>
+<p>So if you have an input of <code>01010</code> and assume that the input is cyclical you can split the string into sets of 3 and then use those sets to get the output of <code>11010</code>. Example:</p>
+<table><thead><tr><th align="center">Neighbors</th><th align="center">Output Cell</th></tr></thead><tbody>
+<tr><td align="center">001</td><td align="center">1</td></tr>
+<tr><td align="center">010</td><td align="center">1</td></tr>
+<tr><td align="center">101</td><td align="center">0</td></tr>
+<tr><td align="center">010</td><td align="center">1</td></tr>
+<tr><td align="center">100</td><td align="center">0</td></tr>
+</tbody></table>
+<h2 id="creating-a-program-to-visualize-these-different-rules">Creating a program to visualize these different rules</h2>
+<h3 id="generating-a-rule">Generating a Rule</h3>
+<p>Since the way that rules are encoded can be represented as a binary number you can store
+the conversion table in an array. This array is indexed by the converting the neighbors
+into a decimal number.</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#abb2bf;">Example:
+
+0b001 -&gt; 1
+rule[1] = 1
+</span></code></pre>
+<p>You would do this for the entire current generation and either exit the program or go to
+the next generation of cells.</p>
+<h3 id="efficient-printing">Efficient Printing</h3>
+<p>In an effort to find an efficient way to print out each generation. I started out with an
+an unbuffered printing statement.</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#cd74e8;">for </span><span style="color:#abb2bf;">(</span><span style="color:#cd74e8;">int</span><span style="color:#abb2bf;"> i </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">; i </span><span style="color:#adb7c9;">&lt;</span><span style="color:#abb2bf;"> size; i</span><span style="color:#adb7c9;">++</span><span style="color:#abb2bf;">) {
+	</span><span style="color:#cd74e8;">if </span><span style="color:#abb2bf;">(array[i] </span><span style="color:#adb7c9;">== </span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">) {
+		</span><span style="color:#5ebfcc;">printf</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot; &quot;</span><span style="color:#abb2bf;">);
+	} </span><span style="color:#cd74e8;">else </span><span style="color:#abb2bf;">{
+		</span><span style="color:#5ebfcc;">printf</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;#&quot;</span><span style="color:#abb2bf;">);
+	}
+}
+</span></code></pre>
+<p>This was taking too long to print out longer sets of generations I switched to a buffered
+printing method that allocates a character space for each cell. This greatly improved the
+amount of time that it would take to print out each generation of cells. With my final
+print function look like this.</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#cd74e8;">char </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;">buffer </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">calloc</span><span style="color:#abb2bf;">(</span><span style="color:#adb7c9;">sizeof</span><span style="color:#abb2bf;">(</span><span style="color:#cd74e8;">char</span><span style="color:#abb2bf;">), (size</span><span style="color:#adb7c9;">+</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">));
+
+</span><span style="color:#cd74e8;">for </span><span style="color:#abb2bf;">(</span><span style="color:#cd74e8;">int</span><span style="color:#abb2bf;"> i </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">; i </span><span style="color:#adb7c9;">&lt;</span><span style="color:#abb2bf;"> size; i</span><span style="color:#adb7c9;">++</span><span style="color:#abb2bf;">)
+	buffer[i] </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">(array[i] </span><span style="color:#adb7c9;">== </span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">) </span><span style="color:#adb7c9;">? </span><span style="color:#9acc76;">&#39; &#39; </span><span style="color:#adb7c9;">: </span><span style="color:#9acc76;">&#39;#&#39;</span><span style="color:#abb2bf;">;
+
+</span><span style="color:#eb6772;">printf</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;</span><span style="color:#db9d63;">%s</span><span style="color:#5ebfcc;">\n</span><span style="color:#9acc76;">&quot;</span><span style="color:#abb2bf;">, buffer);
+</span><span style="color:#eb6772;">free</span><span style="color:#abb2bf;">(buffer);
+</span></code></pre><h3 id="what-i-would-change">What I would change</h3>
+<ol>
+<li>
+<p>Arguments
+Right now the arguments are hard coded static options always in the form of
+<code>./a.out &lt;size&gt; &lt;iterations&gt; &lt;rule: 0-255&gt;</code>. If you know of a better way to handle these
+arguments than this file an issue or pull request on
+<a href="https://github.com/BConquest/automata">github</a>. I know there is argparse and getopt.</p>
+</li>
+<li>
+<p>Different Ways Neighbor can be handled
+There are a couple of ways that I can think of handling neighbors on the edges of a
+generation. The first is how I have it right now in which the <em>&quot;world&quot;</em> acts as a circle.
+Another way to handle the generations is to have a hard cut off limit for each side of the
+world. One other way is to allow the world to grow at each generation. I would like to
+implement all the two new ways to do this ,but I do not want to until I am able to parse
+arguments.</p>
+</li>
+<li>
+<p>Allowing different methods of seed generation
+This goes along with issue number 2 in which I can implement allowing the first generation
+to be randomly generated or reading it in from a file.</p>
+</li>
+</ol>
+<h2 id="examples">Examples</h2>
+<p><a href="https://asciinema.org/a/bxqzQ6hrapltHs5FoxQaJ4r3G"><img src="https://asciinema.org/a/bxqzQ6hrapltHs5FoxQaJ4r3G.svg" alt="asciicast" /></a>
+<a href="https://asciinema.org/a/M3W7tJuSsPkPPXHYfpf3PlvXF"><img src="https://asciinema.org/a/M3W7tJuSsPkPPXHYfpf3PlvXF.svg" alt="asciicast" /></a></p>
+</p>
+
+		</div>
+
+	</body>
+
+</html>
