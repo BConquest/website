@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://bryantconquest.com/</loc>
+        <loc>http://127.0.0.1:1111/</loc>
     </url>
     <url>
-        <loc>https://bryantconquest.com/about/</loc>
+        <loc>http://127.0.0.1:1111/about/</loc>
         <lastmod>2020-05-10</lastmod>
     </url>
     <url>
-        <loc>https://bryantconquest.com/blog/</loc>
+        <loc>http://127.0.0.1:1111/blog/</loc>
     </url>
     <url>
-        <loc>https://bryantconquest.com/blog/creating-network-monitoring-program/</loc>
+        <loc>http://127.0.0.1:1111/blog/creating-network-monitoring-program/</loc>
         <lastmod>2020-05-31</lastmod>
     </url>
     <url>
-        <loc>https://bryantconquest.com/blog/my-setup/</loc>
+        <loc>http://127.0.0.1:1111/blog/my-setup/</loc>
         <lastmod>2020-05-21</lastmod>
     </url>
     <url>
-        <loc>https://bryantconquest.com/projects/</loc>
+        <loc>http://127.0.0.1:1111/projects/</loc>
     </url>
     <url>
-        <loc>https://bryantconquest.com/projects/interprocess-communication/</loc>
+        <loc>http://127.0.0.1:1111/projects/elementary-cellular-automaton/</loc>
+        <lastmod>2020-06-06</lastmod>
+    </url>
+    <url>
+        <loc>http://127.0.0.1:1111/projects/interprocess-communication/</loc>
         <lastmod>2020-05-11</lastmod>
     </url>
 </urlset>
